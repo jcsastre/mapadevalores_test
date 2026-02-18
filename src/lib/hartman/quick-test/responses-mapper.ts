@@ -1,6 +1,10 @@
 // src/lib/hartman/quick-test/responses-mapper.ts
 
-const ORIGINAL_POSITIONS: number[] = [6, 9, 10, 11, 13, 5, 17, 16, 12, 4, 1, 18, 2, 14, 8, 15, 3, 7];
+// Both tables below are a faithful port of the Java QuickTestResponsesMapper,
+// which defines originalPositions and responsesMapping as separate data structures.
+// In the Java source, responsesMapping.get(k) === originalPositions[k-1] for all k in 1..18.
+// The apparent redundancy is intentional: both constants exist in the original Java source.
+const ORIGINAL_POSITIONS = [6, 9, 10, 11, 13, 5, 17, 16, 12, 4, 1, 18, 2, 14, 8, 15, 3, 7];
 
 const RESPONSES_MAPPING: Record<number, number> = {
   1: 6,  2: 9,  3: 10, 4: 11, 5: 13, 6: 5,
