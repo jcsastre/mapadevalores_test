@@ -1,0 +1,78 @@
+{
+  "ME": {
+    "DIM_I": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "En las relaciones interpersonales tienes fluidez, buen manejo y objetividad.",
+        "Estructura Bloqueada Negativamente": "En las relaciones interpersonales tienes fluidez y buen manejo, pero con tendencia a ver lo negativo de los otros.",
+        "Estructura Bloqueada Positivamente": "En las relaciones interpersonales tienes fluidez y buen manejo, pero con tendencia a sobrevalorar a los otros o lo que aportas a los otros ."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "En las relaciones interpersonales presentas dificultades, posiblemente por alguna situación actual.",
+        "Estructura Bloqueada Negativamente": "En las relaciones interpersonales presentas dificultades con tendencia a sentirte defraudada y usada.",
+        "Estructura Bloqueada Positivamente": "En las relaciones interpersonales presentas dificultades de las que quizás no eres del todo consciente."
+      }
+    },
+    "DIM_E": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "En los asuntos prácticos y expresión de los roles tienes fluidez.",
+        "Estructura Bloqueada Negativamente": "En los asuntos prácticos y expresión de los roles tienes fluidez aunque con cierta tendencia la desvalorización.",
+        "Estructura Bloqueada Positivamente": "En los asuntos prácticos y expresión de los roles tienes fluidez aunque con cierta tendencia la sobrevaloración."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "En los asuntos prácticos y expresión de los roles tienes dificultades, no se trata de que no tengas cualidades y capacidades, más bien se trata de que no logras plasmarlas.",
+        "Estructura Bloqueada Negativamente": "En los asuntos prácticos y expresión de los roles tienes dificultades, posiblemente con tendencia la desvalorización",
+        "Estructura Bloqueada Positivamente": "En los asuntos prácticos y expresión de los roles tienes dificultades, posiblemente con tendencia la sobrevaloración."
+      }
+    },
+    "DIM_S": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "En la relación con los sistemas y la autoridad tienes fluidez (trabajo, familia, amigos, etc).",
+        "Estructura Bloqueada Negativamente": "En la relación con los sistemas y la autoridad tienes fluidez (trabajo, familia, amigos, etc), aunque con cierta tendencia a la rebeldía.",
+        "Estructura Bloqueada Positivamente": "En la relación con los sistemas y la autoridad tienes fluidez (trabajo, familia, amigos, etc), aqunque con cierta tendencia a la obediencia o no cuestionamiento."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "En la relación con los sistemas y la autoridad tienes dificultades (trabajo, familia, amigos, etc).",
+        "Estructura Bloqueada Negativamente": "En la relación con los sistemas y la autoridad tienes dificultades (trabajo, familia, amigos, etc) con cierta tendencia a la rebeldía.",
+        "Estructura Bloqueada Positivamente": "En la relación con los sistemas y la autoridad tienes dificultades (trabajo, familia, amigos, etc) con cierta tendencia a la obediencia o no cuestionamiento."
+      }
+    }
+  },
+  "MI": {
+    "DIM_I": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "En autoestima estás bien.",
+        "Estructura Bloqueada Negativamente": "En autoestima estás bien, aunque se observa cierta tendencia a desvalorarte.",
+        "Estructura Bloqueada Positivamente": "En autoestima estás bien, aunque se observa cierta tendencia a sobrevalorarte."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "En autoestima estás bloqueada, posiblemente debido a un acontecimiento actual.",
+        "Estructura Bloqueada Negativamente": "En autoestima estás bloqueada con cierta tendencia a desvalorarte.",
+        "Estructura Bloqueada Positivamente": "En autoestima estás bloqueada con cierta tendencia a sobrevalorarte."
+      }
+    },
+    "DIM_E": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas nutrida internamente.",
+        "Estructura Bloqueada Negativamente": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas nutrida internamente, aunque con cierta tendencia a la disvaloración.",
+        "Estructura Bloqueada Positivamente": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas nutrida internamente, aunque con cierta tendencia a la sobrevaloración."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas insatisfecha.",
+        "Estructura Bloqueada Negativamente": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas insatisfecha y tienes tendencia a enfocarte solamente en lo negativo.",
+        "Estructura Bloqueada Positivamente": "Uno o varios de los roles que desempeñas (como trabajadora, como hija, como pareja, etc) hace que te sientas insatisfecha y tienes tendencia a enfocarte solamente en lo positivo."
+      }
+    },
+    "DIM_S": {
+      "Concreto Desbloqueado": {
+        "Estructura Desbloqueada": "En la autodirección (propósitos y autodisciplina) estás bien.",
+        "Estructura Bloqueada Negativamente": "En la autodirección (propósitos, objetivos, autodisciplina) estás bien, aunque con cierta tendencia a la desmotivación",
+        "Estructura Bloqueada Positivamente": "En la autodirección (propósitos, objetivos, autodisciplina) estás bien, aunque con cierta tendencia a la rigidez/perfeccionismo."
+      },
+      "Concreto Bloqueado": {
+        "Estructura Desbloqueada": "En la autodirección (propósitos y autodisciplina) se observan dificultades.",
+        "Estructura Bloqueada Negativamente": "En la autodirección (propósitos, objetivos, autodisciplina) se observan dificultades con cierta tendencia a la desmotivación",
+        "Estructura Bloqueada Positivamente": "En la autodirección (propósitos, objetivos, autodisciplina) se observan dificultades con cierta tendencia a la rigidez/perfeccionismo."
+      }
+    }
+  }
+}
