@@ -3,7 +3,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type { WorldValues } from '@/lib/hartman/types/world-values';
 import type { WorldRelationsValues } from '@/lib/hartman/types/world-relations-values';
-import type { WeightedAxiogram } from '@/lib/hartman/types/weighted-axiogram';
 import type { QuicktestRequest } from '@/lib/hartman/quick-test/types';
 import type { ReportType } from '@/lib/hartman/domain/report-type';
 import type { WorldType } from '@/lib/hartman/domain/world';

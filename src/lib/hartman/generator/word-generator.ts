@@ -5,7 +5,7 @@ import type { WorldValues } from '@/lib/hartman/types/world-values';
 import type { WorldRelationsValues } from '@/lib/hartman/types/world-relations-values';
 import type { WordType } from '@/lib/hartman/domain/word-type';
 import type { WorldType } from '@/lib/hartman/domain/world';
-import { Dimension, DimensionType, getDimensionLetter, getTextValuationByScoreSpanish, getAiPercValuationByScoreSpanish } from '@/lib/hartman/domain/dimension';
+import { Dimension, getDimensionLetter, getTextValuationByScoreSpanish, getAiPercValuationByScoreSpanish } from '@/lib/hartman/domain/dimension';
 import { getWorldLargeName, getDimensionTitle, getDimensionExplanation } from '@/lib/hartman/domain/world';
 import { getDifTextValuationByScoreSpanish, getDimPercTextValuationByScoreSpanish } from '@/lib/hartman/domain/absolute-values-mappers';
 
