@@ -23,9 +23,9 @@ COPY --from=build /app/public ./public
 
 # Prisma: schema, migrations y CLI necesarios en runtime
 COPY --from=build /app/prisma ./prisma
-COPY --from=deps /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
+COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
-COPY --from=deps /app/node_modules/@prisma/engines ./node_modules/@prisma/engines
+COPY --from=deps /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
 
 EXPOSE 80
 ENV PORT=80
