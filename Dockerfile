@@ -23,6 +23,7 @@ COPY --from=build /app/public ./public
 
 # Prisma: schema, migrations y CLI necesarios en runtime
 COPY --from=build /app/prisma ./prisma
+COPY --from=build /app/prisma.config.ts ./prisma.config.ts
 COPY --from=deps /app/node_modules ./node_modules
 
 EXPOSE 80
