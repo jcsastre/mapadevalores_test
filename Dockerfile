@@ -23,12 +23,11 @@ COPY --from=build /app/public ./public
 
 # Prisma: schema, migrations y CLI necesarios en runtime
 COPY --from=build /app/prisma ./prisma
-COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
+COPY --from=deps /app/node_modules ./node_modules
 
 EXPOSE 80
 ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 
 # Crear directorio de BD, ejecutar migraciones, arrancar servidor
-CMD sh -c "mkdir -p /data && node node_modules/prisma/build/index.js migrate deploy --schema=prisma/schema.prisma && node server.js"
+CMD sh -c "mkdir -p /data && npx prisma migrate deploy --schema=prisma/schema.prisma && node server.js"
