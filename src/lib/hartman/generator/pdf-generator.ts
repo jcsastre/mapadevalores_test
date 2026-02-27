@@ -131,48 +131,48 @@ function worldBox(page: PDFPage, wv: WorldValues, sx: number, sy: number, f: PDF
   // Diffs + INT cells
   for (let i = 0; i < 18; i++) {
     const d = wv.remarkableDiffs[i];
-    remarkableCentered(page, d.value, d.remarked, sx + DD[i].x, sy - DD[i].y, f, FONT_SIZE, [0.70, 0.70, 0], RED);
-    textCentered(page, String(wv.intCells[i]), sx + DD[i].x, sy - DD[i].y - 18, f, FONT_SIZE, BLACK);
+    remarkableCentered(page, d.value, d.remarked, sx + DD[i].x, sy - DD[i].y, f, FONT_SIZE, BLUE, RED);
+    textCentered(page, String(wv.intCells[i]), sx + DD[i].x, sy - DD[i].y - 18, f, FONT_SIZE, BLUE);
   }
 
   // DIM-I/E/S scores
-  remarkableCentered(page, wv.dimIValues.dimensionScore.value, wv.dimIValues.dimensionScore.remarked, sx + DIM_I.x, sy - DIM_I.y, f, FONT_SIZE, BLACK, RED);
-  remarkableCentered(page, wv.dimEValues.dimensionScore.value, wv.dimEValues.dimensionScore.remarked, sx + DIM_E.x, sy - DIM_E.y, f, FONT_SIZE, BLACK, RED);
-  remarkableCentered(page, wv.dimSValues.dimensionScore.value, wv.dimSValues.dimensionScore.remarked, sx + DIM_S.x, sy - DIM_S.y, f, FONT_SIZE, BLACK, RED);
+  remarkableCentered(page, wv.dimIValues.dimensionScore.value, wv.dimIValues.dimensionScore.remarked, sx + DIM_I.x, sy - DIM_I.y, f, FONT_SIZE, BLUE, RED);
+  remarkableCentered(page, wv.dimEValues.dimensionScore.value, wv.dimEValues.dimensionScore.remarked, sx + DIM_E.x, sy - DIM_E.y, f, FONT_SIZE, BLUE, RED);
+  remarkableCentered(page, wv.dimSValues.dimensionScore.value, wv.dimSValues.dimensionScore.remarked, sx + DIM_S.x, sy - DIM_S.y, f, FONT_SIZE, BLUE, RED);
 
   // INT scores per dimension
-  textCentered(page, String(wv.dimIValues.integrationScore), sx + DIM_I_INT.x, sy - DIM_I_INT.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.dimEValues.integrationScore), sx + DIM_E_INT.x, sy - DIM_E_INT.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.dimSValues.integrationScore), sx + DIM_S_INT.x, sy - DIM_S_INT.y, f, FONT_SIZE, BLACK);
+  textCentered(page, String(wv.dimIValues.integrationScore), sx + DIM_I_INT.x, sy - DIM_I_INT.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.dimEValues.integrationScore), sx + DIM_E_INT.x, sy - DIM_E_INT.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.dimSValues.integrationScore), sx + DIM_S_INT.x, sy - DIM_S_INT.y, f, FONT_SIZE, BLUE);
 
   // Positives, Negatives, Net per dimension
-  textCentered(page, String(wv.dimIValues.positivesCount), sx + DIM_I_POS.x, sy - DIM_I_POS.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.dimIValues.negativesCount), sx + DIM_I_NEG.x, sy - DIM_I_NEG.y, f, FONT_SIZE, BLACK);
-  remarkableCentered(page, wv.dimIValues.positivesNegativesNet.value, wv.dimIValues.positivesNegativesNet.remarked, sx + DIM_I_NET.x, sy - DIM_I_NET.y, f, FONT_SIZE, BLACK, TEAL);
-  textCentered(page, String(wv.dimEValues.positivesCount), sx + DIM_E_POS.x, sy - DIM_E_POS.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.dimEValues.negativesCount), sx + DIM_E_NEG.x, sy - DIM_E_NEG.y, f, FONT_SIZE, BLACK);
-  remarkableCentered(page, wv.dimEValues.positivesNegativesNet.value, wv.dimEValues.positivesNegativesNet.remarked, sx + DIM_E_NET.x, sy - DIM_E_NET.y, f, FONT_SIZE, BLACK, TEAL);
-  textCentered(page, String(wv.dimSValues.positivesCount), sx + DIM_S_POS.x, sy - DIM_S_POS.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.dimSValues.negativesCount), sx + DIM_S_NEG.x, sy - DIM_S_NEG.y, f, FONT_SIZE, BLACK);
-  remarkableCentered(page, wv.dimSValues.positivesNegativesNet.value, wv.dimSValues.positivesNegativesNet.remarked, sx + DIM_S_NET.x, sy - DIM_S_NET.y, f, FONT_SIZE, BLACK, TEAL);
+  textCentered(page, String(wv.dimIValues.positivesCount), sx + DIM_I_POS.x, sy - DIM_I_POS.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.dimIValues.negativesCount), sx + DIM_I_NEG.x, sy - DIM_I_NEG.y, f, FONT_SIZE, BLUE);
+  remarkableCentered(page, wv.dimIValues.positivesNegativesNet.value, wv.dimIValues.positivesNegativesNet.remarked, sx + DIM_I_NET.x, sy - DIM_I_NET.y, f, FONT_SIZE, BLUE, TEAL);
+  textCentered(page, String(wv.dimEValues.positivesCount), sx + DIM_E_POS.x, sy - DIM_E_POS.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.dimEValues.negativesCount), sx + DIM_E_NEG.x, sy - DIM_E_NEG.y, f, FONT_SIZE, BLUE);
+  remarkableCentered(page, wv.dimEValues.positivesNegativesNet.value, wv.dimEValues.positivesNegativesNet.remarked, sx + DIM_E_NET.x, sy - DIM_E_NET.y, f, FONT_SIZE, BLUE, TEAL);
+  textCentered(page, String(wv.dimSValues.positivesCount), sx + DIM_S_POS.x, sy - DIM_S_POS.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.dimSValues.negativesCount), sx + DIM_S_NEG.x, sy - DIM_S_NEG.y, f, FONT_SIZE, BLUE);
+  remarkableCentered(page, wv.dimSValues.positivesNegativesNet.value, wv.dimSValues.positivesNegativesNet.remarked, sx + DIM_S_NET.x, sy - DIM_S_NET.y, f, FONT_SIZE, BLUE, TEAL);
 
   // DIF, DIM, INT, DIS, Q1, Q2
-  remarkableCentered(page, wv.difScore.value, wv.difScore.remarked, sx + DIF.x, sy - DIF.y, f, FONT_SIZE, BLACK, RED);
-  textCentered(page, String(wv.dimScore), sx + DIM.x, sy - DIM.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.intScore), sx + INT.x, sy - DIM.y, f, FONT_SIZE, BLACK);
-  remarkableCentered(page, wv.distorsionsCount.value, wv.distorsionsCount.remarked, sx + DIS.x, sy - DIS.y, f, FONT_SIZE, BLACK, RED);
-  textCentered(page, String(wv.q1), sx + Q1.x, sy - Q1.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.q2), sx + Q2.x, sy - Q2.y, f, FONT_SIZE, BLACK);
+  remarkableCentered(page, wv.difScore.value, wv.difScore.remarked, sx + DIF.x, sy - DIF.y, f, FONT_SIZE, BLUE, RED);
+  textCentered(page, String(wv.dimScore), sx + DIM.x, sy - DIM.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.intScore), sx + INT.x, sy - DIM.y, f, FONT_SIZE, BLUE);
+  remarkableCentered(page, wv.distorsionsCount.value, wv.distorsionsCount.remarked, sx + DIS.x, sy - DIS.y, f, FONT_SIZE, BLUE, RED);
+  textCentered(page, String(wv.q1), sx + Q1.x, sy - Q1.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.q2), sx + Q2.x, sy - Q2.y, f, FONT_SIZE, BLUE);
 
   // DIM%, INT%
-  remarkableCentered(page, wv.dimPerc.value, wv.dimPerc.remarked, sx + DIMP.x, sy - DIMP.y, f, FONT_SIZE, BLACK, RED);
-  remarkableCentered(page, wv.intPerc.value, wv.intPerc.remarked, sx + INTP.x, sy - INTP.y, f, FONT_SIZE, BLACK, RED);
+  remarkableCentered(page, wv.dimPerc.value, wv.dimPerc.remarked, sx + DIMP.x, sy - DIMP.y, f, FONT_SIZE, BLUE, RED);
+  remarkableCentered(page, wv.intPerc.value, wv.intPerc.remarked, sx + INTP.x, sy - INTP.y, f, FONT_SIZE, BLUE, RED);
 
   // DI, AI%, totals
-  remarkableCentered(page, wv.diScore.value, wv.diScore.remarked, sx + DI.x, sy - DI.y, f, FONT_SIZE, BLACK, RED);
-  remarkableCentered(page, wv.aiPerc.value, wv.aiPerc.remarked, sx + AI.x, sy - AI.y, f, FONT_SIZE, BLACK, RED);
-  textCentered(page, String(wv.positivesTotal), sx + PT.x, sy - PT.y, f, FONT_SIZE, BLACK);
-  textCentered(page, String(wv.negativesTotal), sx + NT.x, sy - NT.y, f, FONT_SIZE, BLACK);
+  remarkableCentered(page, wv.diScore.value, wv.diScore.remarked, sx + DI.x, sy - DI.y, f, FONT_SIZE, BLUE, RED);
+  remarkableCentered(page, wv.aiPerc.value, wv.aiPerc.remarked, sx + AI.x, sy - AI.y, f, FONT_SIZE, BLUE, RED);
+  textCentered(page, String(wv.positivesTotal), sx + PT.x, sy - PT.y, f, FONT_SIZE, BLUE);
+  textCentered(page, String(wv.negativesTotal), sx + NT.x, sy - NT.y, f, FONT_SIZE, BLUE);
 }
 
 // ─── BQR relations ────────────────────────────────────────────────────────────
@@ -192,7 +192,7 @@ function printWeightedAxiograms(page: PDFPage, wv: WorldValues, sx: number, sy: 
     for (const ax of axioms) {
       const ab = ax.axiogram.axiogramBase;
       textCentered(page, String(ab.value), sx + 19, sy + dy, f, _1W_WA_FS, BLACK);
-      textCentered(page, String(ax.response.value), sx + 48, sy + dy, f, _1W_WA_FS, ax.response.remarked ? RED : BLUE);
+      remarkableCentered(page, ax.response.value, ax.response.remarked, sx + 48, sy + dy, f, _1W_WA_FS, BLUE, RED);
       const diffStr = ax.diff > 0 ? `+${ax.diff}` : String(ax.diff);
       textCentered(page, diffStr, sx + 78, sy + dy, f, _1W_WA_FS, BLACK);
       textCentered(page, getDimensionLetter(ab.dimension), sx + 100, sy + dy, f, _1W_WA_FS, BLACK);
@@ -249,8 +249,8 @@ function printOrderAxiograms(page: PDFPage, world: WorldType, wv: WorldValues, s
       const dif = patientVal - axiomVal;
       const lw = Math.abs(dif) <= 2 ? 0.25 : Math.abs(dif) <= 4 ? 0.5 : Math.abs(dif) <= 6 ? 1 : 2;
       page.drawLine({
-        start: { x: sx + 230, y: sy + dy + dif * _1W_OA_DY },
-        end:   { x: sx + 370, y: sy + dy },
+        start: { x: sx + 207, y: sy + dy + dif * _1W_OA_DY },
+        end:   { x: sx + 343, y: sy + dy },
         thickness: lw,
         color: rgb(...color),
       });

@@ -26,8 +26,8 @@ COPY --from=deps /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
 COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
 COPY --from=deps /app/node_modules/@prisma/engines ./node_modules/@prisma/engines
 
-EXPOSE 3000
-ENV PORT=3000
+EXPOSE 80
+ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 
 # Crear directorio de BD, ejecutar migraciones, arrancar servidor

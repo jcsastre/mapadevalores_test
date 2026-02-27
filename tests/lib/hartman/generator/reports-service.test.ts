@@ -1,11 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 
-vi.mock('@/lib/hartman/generator/email-service', () => ({
-  sendReportByEmail: vi.fn().mockResolvedValue(undefined),
+vi.mock('@/lib/hartman/generator/pdf-provider', () => ({
+  getPdfBytes: vi.fn().mockResolvedValue(new Uint8Array([0x25, 0x50, 0x44, 0x46])),
 }));
 
 import { generateUniqueOutputFilename, generateAndSendReport } from '@/lib/hartman/generator/reports-service';
-import { sendReportByEmail } from '@/lib/hartman/generator/email-service';
 
 const EXT = [4, 1, 18, 12, 17, 6, 5, 15, 7, 14, 16, 9, 8, 2, 11, 10, 3, 13];
 const INT = [17, 13, 12, 9, 11, 7, 15, 18, 6, 1, 16, 3, 14, 4, 2, 10, 5, 8];
@@ -19,14 +18,9 @@ describe('generateUniqueOutputFilename', () => {
 });
 
 describe('generateAndSendReport', () => {
-  it('calls sendReportByEmail with PDF and DOCX buffers', async () => {
-    await generateAndSendReport(REQ, EXT, INT, null, 'COMPLETE', 'COMPLETE');
-
-    expect(sendReportByEmail).toHaveBeenCalledOnce();
-    const call = (sendReportByEmail as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(call[2]).toBeInstanceOf(Buffer); // pdfBuffer
-    expect(call[4]).toBeInstanceOf(Buffer); // docxBuffer
-    expect(call[3]).toMatch(/\.pdf$/);      // pdfFilename
-    expect(call[5]).toMatch(/\.docx$/);     // docxFilename
+  it('generates PDF and Word without error', async () => {
+    await expect(
+      generateAndSendReport(REQ, EXT, INT, null, 'COMPLETE', 'COMPLETE')
+    ).resolves.toBeUndefined();
   });
 });

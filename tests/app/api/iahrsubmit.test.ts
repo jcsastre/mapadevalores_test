@@ -4,6 +4,14 @@ vi.mock('@/lib/hartman/generator/reports-service', () => ({
   generateAndSendReport: vi.fn().mockResolvedValue(undefined),
 }));
 
+vi.mock('@/lib/prisma', () => ({
+  prisma: {
+    testSubmission: {
+      create: vi.fn().mockResolvedValue({}),
+    },
+  },
+}));
+
 import { POST } from '@/app/api/iahrsubmit/route';
 import { generateAndSendReport } from '@/lib/hartman/generator/reports-service';
 
