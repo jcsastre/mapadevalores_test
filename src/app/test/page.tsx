@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { PersonalDataForm, type PersonalData } from '@/components/PersonalDataForm';
 import { WorldRankingForm } from '@/components/WorldRankingForm';
 import { RankingReview } from '@/components/RankingReview';
@@ -35,7 +36,7 @@ type Step =
   | 'confirm'
   | 'done';
 
-export default function TestPage() {
+function TestContent() {
   const [step, setStep] = useState<Step>('personal');
   const [personalData, setPersonalData] = useState<PersonalData>({
     clave: '',
@@ -51,6 +52,9 @@ export default function TestPage() {
   const [sexualRankings, setSexualRankings] = useState<(number | null)[]>(EMPTY_RANKINGS());
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const searchParams = useSearchParams();
+  const isAutofillEnabled = searchParams.get('qa') === '1';
 
   const STEPS: Step[] = includeSexual
     ? ['personal', 'external', 'external-review', 'internal', 'internal-review', 'sexual-choice', 'sexual-ranking', 'sexual-review', 'confirm']
@@ -206,7 +210,7 @@ export default function TestPage() {
               <h2 className="mb-4 text-lg font-semibold text-zinc-800 dark:text-zinc-200">
                 Datos personales
               </h2>
-              <PersonalDataForm data={personalData} onChange={setPersonalData} />
+              <PersonalDataForm data={personalData} onChange={setPersonalData} isAutofillEnabled={isAutofillEnabled} />
             </>
           )}
 
@@ -218,7 +222,7 @@ export default function TestPage() {
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
                 Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
               </p>
-              <WorldRankingForm world="EXTERNAL" values={externalRankings} onChange={setExternalRankings} />
+              <WorldRankingForm world="EXTERNAL" values={externalRankings} onChange={setExternalRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
           )}
 
@@ -240,7 +244,7 @@ export default function TestPage() {
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
                 Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
               </p>
-              <WorldRankingForm world="INTERNAL" values={internalRankings} onChange={setInternalRankings} />
+              <WorldRankingForm world="INTERNAL" values={internalRankings} onChange={setInternalRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
           )}
 
@@ -299,7 +303,7 @@ export default function TestPage() {
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
                 Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
               </p>
-              <WorldRankingForm world="SEXUAL" values={sexualRankings} onChange={setSexualRankings} />
+              <WorldRankingForm world="SEXUAL" values={sexualRankings} onChange={setSexualRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
           )}
 
@@ -375,5 +379,13 @@ export default function TestPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function TestPage() {
+  return (
+    <Suspense>
+      <TestContent />
+    </Suspense>
   );
 }

@@ -12,6 +12,7 @@ export interface PersonalData {
 interface PersonalDataFormProps {
   data: PersonalData;
   onChange: (data: PersonalData) => void;
+  isAutofillEnabled?: boolean;
 }
 
 const SEXO_OPTIONS = ['Mujer', 'Hombre', 'No binario', 'Prefiero no decirlo'];
@@ -21,7 +22,7 @@ function pick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-export function PersonalDataForm({ data, onChange }: PersonalDataFormProps) {
+export function PersonalDataForm({ data, onChange, isAutofillEnabled }: PersonalDataFormProps) {
   function set(field: keyof PersonalData, value: string) {
     onChange({ ...data, [field]: value });
   }
@@ -38,8 +39,6 @@ export function PersonalDataForm({ data, onChange }: PersonalDataFormProps) {
   }
 
   const inputClass = "rounded-lg border border-zinc-300 px-3 py-2.5 text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-1 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50";
-
-  const isAutofillEnabled = process.env.NEXT_PUBLIC_ENABLE_AUTOFILL === 'true';
 
   return (
     <div className="flex flex-col gap-4">

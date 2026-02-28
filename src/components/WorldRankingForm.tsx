@@ -7,6 +7,7 @@ interface WorldRankingFormProps {
   world: WorldType;
   values: (number | null)[];
   onChange: (values: (number | null)[]) => void;
+  isAutofillEnabled?: boolean;
 }
 
 const ALL_RANKS = Array.from({ length: 18 }, (_, i) => i + 1);
@@ -20,7 +21,7 @@ function shuffled(): number[] {
   return arr;
 }
 
-export function WorldRankingForm({ world, values, onChange }: WorldRankingFormProps) {
+export function WorldRankingForm({ world, values, onChange, isAutofillEnabled }: WorldRankingFormProps) {
   const axiograms = axiogramsByWorld.get(world) ?? [];
   const usedValues = new Set(values.filter((v): v is number => v !== null));
   const assignedCount = usedValues.size;
@@ -45,8 +46,6 @@ export function WorldRankingForm({ world, values, onChange }: WorldRankingFormPr
   function handleAutoFill() {
     onChange(shuffled());
   }
-
-  const isAutofillEnabled = process.env.NEXT_PUBLIC_ENABLE_AUTOFILL === 'true';
 
   return (
     <div className="flex flex-col gap-3">
