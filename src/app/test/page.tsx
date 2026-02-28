@@ -220,7 +220,7 @@ function TestContent() {
                 Mundo Externo
               </h2>
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
+                Abajo encontrarás 18 frases. Cada una de éstas representa algo a lo cual una persona puede asignarle diferentes valores (bueno o malo). Lee cuidadosamente todas las frases y si hay alguna que no entiendes pregunta su significado. Escribe el número 1 delante de la frase que, en tu opinión, representa el valor más bueno. Indica con el número 2 la frase que consideras en segundo lugar y así sucesivamente. Enumera todas las frases utilizando un número diferente para cada una de ellas (1, 2, 3, 4,...) hasta llegar al número 18, que representará el valor que consideras lo peor. No juzgues las frases por la importancia, sino exclusivamente por la bondad o maldad que contienen. No hay tiempo límite, pero la mayoría de personas enumeran todas las frases en diez minutos.
               </p>
               <WorldRankingForm world="EXTERNAL" values={externalRankings} onChange={setExternalRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
@@ -242,7 +242,7 @@ function TestContent() {
                 Mundo Interno
               </h2>
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
+                Abajo encontrarás 18 frases. Asigna valores del 1 al 18 de acuerdo con la frase que represente el mayor valor (1) es decir con la que usted esté más de ACUERDO, hasta el número 18 que representa la frase con la que usted esté más en DESACUERDO. No puede faltar ningún número de la escala 1 al 18 y tampoco puede repetirse ningún número. Concéntrate en tu tarea y decide rápidamente qué número vas a asignar a cada una de las frases.
               </p>
               <WorldRankingForm world="INTERNAL" values={internalRankings} onChange={setInternalRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
@@ -301,7 +301,7 @@ function TestContent() {
                 Mundo Sexual
               </h2>
               <p className="mb-4 text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-                Asigna un valor único del 1 al 18 a cada frase según cuánto la valoras (1&nbsp;= más importante, 18&nbsp;= menos importante).
+                Abajo encontrarás 18 frases. Asigna valores del 1 al 18 de acuerdo con la frase que represente el mayor valor (1) es decir con la que usted esté más de ACUERDO, hasta el número 18 que representa la frase con la que usted esté más en DESACUERDO. No puede faltar ningún número de la escala 1 al 18 y tampoco puede repetirse ningún número. Concéntrate en tu tarea y decide rápidamente qué número vas a asignar a cada una de las frases.
               </p>
               <WorldRankingForm world="SEXUAL" values={sexualRankings} onChange={setSexualRankings} isAutofillEnabled={isAutofillEnabled} />
             </>
