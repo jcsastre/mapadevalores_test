@@ -24,6 +24,12 @@ export function getDimensionLetter(dim: DimensionType): string {
   return dimensionMeta[dim].letter;
 }
 
+export function getDimensionTranslatedName(dim: DimensionType): string {
+  if (dim === Dimension.INTRINSIC) return 'Intrínseco';
+  if (dim === Dimension.EXTRINSIC) return 'Extrínseco';
+  return 'Sistémico';
+}
+
 export const DIM_I_CELLS_POSITIONS: number[] = [5, 9, 10, 11, 13, 15];
 export const DIM_E_CELLS_POSITIONS: number[] = [0, 3, 4, 6, 12, 14];
 export const DIM_S_CELLS_POSITIONS: number[] = [1, 2, 7, 8, 16, 17];

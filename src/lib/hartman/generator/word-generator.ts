@@ -5,7 +5,7 @@ import type { WorldValues } from '@/lib/hartman/types/world-values';
 import type { WorldRelationsValues } from '@/lib/hartman/types/world-relations-values';
 import type { WordType } from '@/lib/hartman/domain/word-type';
 import type { WorldType } from '@/lib/hartman/domain/world';
-import { Dimension, getDimensionLetter, getTextValuationByScoreSpanish, getAiPercValuationByScoreSpanish } from '@/lib/hartman/domain/dimension';
+import { Dimension, getDimensionLetter, getDimensionShortName, getTextValuationByScoreSpanish, getAiPercValuationByScoreSpanish } from '@/lib/hartman/domain/dimension';
 import { getWorldLargeName, getDimensionTitle, getDimensionExplanation } from '@/lib/hartman/domain/world';
 import { getDifTextValuationByScoreSpanish, getDimPercTextValuationByScoreSpanish } from '@/lib/hartman/domain/absolute-values-mappers';
 
@@ -68,7 +68,7 @@ function generateWorldSection(
       [Dimension.EXTRINSIC, wv.dimEValues] as const,
       [Dimension.SISTEMIC,  wv.dimSValues] as const,
     ]) {
-      paragraphs.push(heading2(`${dim} (${getDimensionTitle(world, dim)})`));
+      paragraphs.push(heading2(`${getDimensionShortName(dim)} (${getDimensionTitle(world, dim)})`));
       paragraphs.push(para(getDimensionExplanation(world, dim)));
       paragraphs.push(para(`Valoración: ${getTextValuationByScoreSpanish(dimValues.dimensionScore.value)}`));
 
@@ -125,6 +125,54 @@ export async function generateWord(
     children.push(...generateWorldSection('SEXUAL', sexualWorldValues, wordType, minDistortion));
   }
 
-  const doc = new Document({ sections: [{ properties: {}, children }] });
+  const doc = new Document({
+    styles: {
+      paragraphStyles: [
+        {
+          id: 'Heading1',
+          name: 'Heading 1',
+          basedOn: 'Normal',
+          next: 'Normal',
+          quickFormat: true,
+          run: {
+            size: 48,
+            bold: true,
+          },
+          paragraph: {
+            spacing: { before: 480, after: 120 },
+          },
+        },
+        {
+          id: 'Heading2',
+          name: 'Heading 2',
+          basedOn: 'Normal',
+          next: 'Normal',
+          quickFormat: true,
+          run: {
+            size: 36,
+            bold: true,
+          },
+          paragraph: {
+            spacing: { before: 360, after: 80 },
+          },
+        },
+        {
+          id: 'Heading3',
+          name: 'Heading 3',
+          basedOn: 'Normal',
+          next: 'Normal',
+          quickFormat: true,
+          run: {
+            size: 28,
+            bold: true,
+          },
+          paragraph: {
+            spacing: { before: 280, after: 80 },
+          },
+        },
+      ],
+    },
+    sections: [{ properties: {}, children }],
+  });
   return Packer.toBuffer(doc);
 }

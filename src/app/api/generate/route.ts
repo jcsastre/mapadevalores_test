@@ -37,7 +37,7 @@ export async function POST(req: Request): Promise<Response> {
     return json({ error: 'Unauthorized' }, 401);
   }
 
-  const { request, reportType = 'COMPLETE', wordType = 'COMPLETE' } = body;
+  const { request, reportType = 'COMPLETE', wordType = 'FOR_JC' } = body;
   const { responses } = request;
   const mundos = responses?.length >= 54 ? 'EIS' : 'EI';
 

@@ -57,7 +57,7 @@ export function SubmissionsTable({ password }: { password: string }) {
           responses,
         },
         reportType: 'COMPLETE',
-        wordType: 'COMPLETE',
+        wordType: 'FOR_JC',
       };
 
       const res = await fetch('/api/generate', {
