@@ -92,6 +92,7 @@ export async function POST(req: Request): Promise<Response> {
       JSON.stringify({
         pdf:      Buffer.from(pdfBytes).toString('base64'),
         word:     docxBuffer.toString('base64'),
+        json:     Buffer.from(JSON.stringify(request, null, 2)).toString('base64'),
         filename: baseName,
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } },

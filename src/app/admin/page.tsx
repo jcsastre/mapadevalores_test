@@ -104,6 +104,9 @@ function AdminForm({ password }: { password: string }) {
       const data = await res.json();
       downloadBase64(data.pdf, `${data.filename}.pdf`, 'application/pdf');
       downloadBase64(data.word, `${data.filename}.docx`, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      if (data.json) {
+        downloadBase64(data.json, `${data.filename}_datos.json`, 'application/json');
+      }
 
       setSuccess('Informes descargados correctamente.');
     } catch {
