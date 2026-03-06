@@ -5,6 +5,7 @@ import { useState } from 'react';
 interface WorldRankingsInputProps {
   values: (number | null)[];
   onChange: (values: (number | null)[]) => void;
+  isAutofillEnabled?: boolean;
 }
 
 function parseRankings(raw: string): (number | null)[] {
@@ -42,7 +43,7 @@ function validationMessage(values: (number | null)[]): { ok: boolean; msg: strin
   return { ok: true, msg: '18 valores válidos (1-18 sin repetir)' };
 }
 
-export function WorldRankingsInput({ values, onChange }: WorldRankingsInputProps) {
+export function WorldRankingsInput({ values, onChange, isAutofillEnabled }: WorldRankingsInputProps) {
   const [text, setText] = useState(() =>
     values.filter((v): v is number => v !== null).join(' ')
   );
@@ -70,13 +71,15 @@ export function WorldRankingsInput({ values, onChange }: WorldRankingsInputProps
           placeholder="Ej: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18"
           className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 font-mono text-sm focus:border-zinc-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
         />
-        <button
-          type="button"
-          onClick={handleAutofill}
-          className="shrink-0 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-        >
-          Autocompletar
-        </button>
+        {isAutofillEnabled && (
+          <button
+            type="button"
+            onClick={handleAutofill}
+            className="shrink-0 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+          >
+            Autocompletar
+          </button>
+        )}
       </div>
       {msg && (
         <p className={`text-xs ${ok ? 'text-green-600 dark:text-green-400' : 'text-amber-600 dark:text-amber-400'}`}>

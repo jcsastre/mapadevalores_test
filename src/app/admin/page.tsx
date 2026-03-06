@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { PasswordGate } from '@/components/PasswordGate';
 import { PersonalDataForm, type PersonalData } from '@/components/PersonalDataForm';
 import { WorldRankingsInput } from '@/components/WorldRankingsInput';
@@ -22,7 +23,7 @@ function isCompleteRanking(values: (number | null)[]): boolean {
   return new Set(filled).size === 18;
 }
 
-function AdminForm({ password }: { password: string }) {
+function AdminForm({ password, isAutofillEnabled }: { password: string, isAutofillEnabled: boolean }) {
   const [personalData, setPersonalData] = useState<PersonalData>({
     clave: '',
     edad: '',
@@ -123,7 +124,7 @@ function AdminForm({ password }: { password: string }) {
         <h2 className="mb-4 text-base font-semibold text-zinc-800 dark:text-zinc-200">
           Datos personales
         </h2>
-        <PersonalDataForm data={personalData} onChange={setPersonalData} />
+        <PersonalDataForm data={personalData} onChange={setPersonalData} isAutofillEnabled={isAutofillEnabled} />
       </section>
 
       {/* External world */}
@@ -132,7 +133,7 @@ function AdminForm({ password }: { password: string }) {
           Mundo Externo <span className="text-red-500">*</span>
         </h2>
         <p className="mb-2 text-xs text-zinc-500">18 números del 1 al 18 sin repetir, separados por espacios o comas</p>
-        <WorldRankingsInput values={externalRankings} onChange={setExternalRankings} />
+        <WorldRankingsInput values={externalRankings} onChange={setExternalRankings} isAutofillEnabled={isAutofillEnabled} />
       </section>
 
       {/* Internal world */}
@@ -141,7 +142,7 @@ function AdminForm({ password }: { password: string }) {
           Mundo Interno <span className="text-red-500">*</span>
         </h2>
         <p className="mb-2 text-xs text-zinc-500">18 números del 1 al 18 sin repetir, separados por espacios o comas</p>
-        <WorldRankingsInput values={internalRankings} onChange={setInternalRankings} />
+        <WorldRankingsInput values={internalRankings} onChange={setInternalRankings} isAutofillEnabled={isAutofillEnabled} />
       </section>
 
       {/* Sexual world */}
@@ -150,7 +151,7 @@ function AdminForm({ password }: { password: string }) {
           Mundo Sexual <span className="text-zinc-400 font-normal text-sm">(opcional)</span>
         </h2>
         <p className="mb-2 text-xs text-zinc-500">Si introduces valores, deben ser los 18 números del 1 al 18 sin repetir</p>
-        <WorldRankingsInput values={sexualRankings} onChange={setSexualRankings} />
+        <WorldRankingsInput values={sexualRankings} onChange={setSexualRankings} isAutofillEnabled={isAutofillEnabled} />
       </section>
 
       {/* Error / success */}
@@ -180,6 +181,8 @@ type Tab = 'entrada' | 'tests';
 
 function AdminDashboard({ password }: { password: string }) {
   const [activeTab, setActiveTab] = useState<Tab>('tests');
+  const searchParams = useSearchParams();
+  const isAutofillEnabled = searchParams.get('qa') === '1';
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -217,7 +220,7 @@ function AdminDashboard({ password }: { password: string }) {
           </button>
         </div>
 
-        {activeTab === 'entrada' && <AdminForm password={password} />}
+        {activeTab === 'entrada' && <AdminForm password={password} isAutofillEnabled={isAutofillEnabled} />}
         {activeTab === 'tests' && <SubmissionsTable password={password} />}
       </div>
     </div>
@@ -226,8 +229,10 @@ function AdminDashboard({ password }: { password: string }) {
 
 export default function AdminPage() {
   return (
-    <PasswordGate>
-      {(password) => <AdminDashboard password={password} />}
-    </PasswordGate>
+    <Suspense>
+      <PasswordGate>
+        {(password) => <AdminDashboard password={password} />}
+      </PasswordGate>
+    </Suspense>
   );
 }

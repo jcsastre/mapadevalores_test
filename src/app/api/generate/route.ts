@@ -6,6 +6,7 @@ import { generateUniqueOutputFilename } from '@/lib/hartman/generator/reports-se
 import type { QuicktestRequest } from '@/lib/hartman/quick-test/types';
 import type { ReportType } from '@/lib/hartman/domain/report-type';
 import type { WordType } from '@/lib/hartman/domain/word-type';
+import type { WorldValues } from '@/lib/hartman/types/world-values';
 import { createLogger, logResponse } from '@/lib/logger';
 
 const log = createLogger('generate');
@@ -88,11 +89,25 @@ export async function POST(req: Request): Promise<Response> {
       wordKB:   Math.round(docxBuffer.length / 1024),
     });
 
+    const extendedData = {
+      ...request,
+      resultados: {
+        externo: formatWorldValuesToJson(externalWorldValues),
+        interno: formatWorldValuesToJson(internalWorldValues),
+        sexual: sexualWorldValues ? formatWorldValuesToJson(sexualWorldValues) : null,
+        relaciones: {
+          bqr1: worldRelationsValues.bqr1.value,
+          bqr2: worldRelationsValues.bqr2.value,
+          dif1dif2: worldRelationsValues.dif1dif2
+        }
+      }
+    };
+
     return new Response(
       JSON.stringify({
         pdf:      Buffer.from(pdfBytes).toString('base64'),
         word:     docxBuffer.toString('base64'),
-        json:     Buffer.from(JSON.stringify(request, null, 2)).toString('base64'),
+        json:     Buffer.from(JSON.stringify(extendedData, null, 2)).toString('base64'),
         filename: baseName,
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } },
@@ -109,4 +124,42 @@ function json(body: object, status: number): Response {
     status,
     headers: { 'Content-Type': 'application/json' },
   });
+}
+
+function formatWorldValuesToJson(values: WorldValues) {
+  return {
+    dif: values.difScore.value,
+    dim: values.dimScore,
+    int: values.intScore,
+    dimPerc: values.dimPerc.value,
+    intPerc: values.intPerc.value,
+    aiPerc: values.aiPerc.value,
+    di: values.diScore.value,
+    q1: values.q1,
+    q2: values.q2,
+    distorsiones: values.distorsionsCount.value,
+    positivosTotales: values.positivesTotal,
+    negativosTotales: values.negativesTotal,
+    dimensionI: {
+      score: values.dimIValues.dimensionScore.value,
+      integracion: values.dimIValues.integrationScore,
+      positivos: values.dimIValues.positivesCount,
+      negativos: values.dimIValues.negativesCount,
+      neto: values.dimIValues.positivesNegativesNet.value
+    },
+    dimensionE: {
+      score: values.dimEValues.dimensionScore.value,
+      integracion: values.dimEValues.integrationScore,
+      positivos: values.dimEValues.positivesCount,
+      negativos: values.dimEValues.negativesCount,
+      neto: values.dimEValues.positivesNegativesNet.value
+    },
+    dimensionS: {
+      score: values.dimSValues.dimensionScore.value,
+      integracion: values.dimSValues.integrationScore,
+      positivos: values.dimSValues.positivesCount,
+      negativos: values.dimSValues.negativesCount,
+      neto: values.dimSValues.positivesNegativesNet.value
+    }
+  };
 }
