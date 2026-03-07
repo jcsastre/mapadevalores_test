@@ -30,5 +30,11 @@ EXPOSE 80
 ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 
+# Construir DATABASE_URL desde vars individuales si no se proporciona directamente
 # Ejecutar migraciones y arrancar servidor
-CMD sh -c "npx prisma migrate deploy --schema=prisma/schema.prisma && node server.js"
+CMD sh -c "\
+  if [ -z \"$DATABASE_URL\" ]; then \
+    export DATABASE_URL=\"postgresql://${POSTGRES_USER:-mapadevalores}:${POSTGRES_PASSWORD}@${POSTGRES_HOST:-db}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-mapadevalores}\"; \
+  fi && \
+  npx prisma migrate deploy --schema=prisma/schema.prisma && \
+  node server.js"
