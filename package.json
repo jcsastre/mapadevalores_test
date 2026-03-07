@@ -3,7 +3,7 @@
   "version": "0.1.14",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "prisma generate && next dev",
     "dev:restart": "nodemon",
     "build": "next build",
     "start": "next start",
@@ -13,13 +13,16 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@prisma/adapter-better-sqlite3": "^7.4.0",
+    "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.0",
+    "@types/pg": "^8.18.0",
     "better-sqlite3": "^12.6.2",
     "docx": "^9.5.3",
     "form-data": "^4.0.5",
     "mailgun.js": "^12.7.0",
     "next": "16.1.6",
     "pdf-lib": "^1.17.1",
+    "pg": "^8.20.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -34,7 +37,7 @@
     "nodemon": "^3.1.11",
     "prisma": "^7.4.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
+    "typescript": "5.9.3",
     "vitest": "^4.0.18"
   }
 }

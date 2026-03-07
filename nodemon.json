@@ -3,12 +3,14 @@
     "src",
     ".env",
     ".env.local",
-    "next.config.ts"
+    "next.config.ts",
+    "prisma/schema.prisma"
   ],
-  "ext": "ts,tsx,js,json",
+  "ext": "ts,tsx,js,json,prisma",
   "ignore": [
     ".next/*",
-    "node_modules/*"
+    "node_modules/*",
+    "src/generated/*"
   ],
-  "exec": "next dev"
+  "exec": "prisma generate && next dev"
 }

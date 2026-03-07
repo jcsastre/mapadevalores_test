@@ -9,6 +9,48 @@ function isAuthorized(request: Request): boolean {
   return !!process.env.ADMIN_PASSWORD && password === process.env.ADMIN_PASSWORD;
 }
 
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<Response> {
+  if (!isAuthorized(request)) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const { id } = await params;
+  const numId = parseInt(id, 10);
+  if (isNaN(numId)) {
+    return new Response(JSON.stringify({ error: 'Invalid id' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  let body: { groupId: number | null };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const submission = await prisma.testSubmission.update({
+    where: { id: numId },
+    data: { groupId: body.groupId ?? null },
+  });
+
+  logResponse(log, 200, 'Grupo asignado', { submissionId: numId, groupId: body.groupId });
+  return new Response(JSON.stringify(submission), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

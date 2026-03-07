@@ -7,7 +7,16 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
+}
+
+model Group {
+  id          Int              @id @default(autoincrement())
+  name        String
+  description String?
+  date        DateTime?
+  createdAt   DateTime         @default(now())
+  tests       TestSubmission[]
 }
 
 model TestSubmission {
@@ -20,4 +29,6 @@ model TestSubmission {
   profesion   String
   responses   String   // JSON: "[1,2,...,18,1,2,...,18]"
   createdAt   DateTime @default(now())
+  groupId     Int?
+  group       Group?   @relation(fields: [groupId], references: [id])
 }
