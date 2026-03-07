@@ -1,5 +1,34 @@
 version: '3.8'
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mapadevalores}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-mapadevalores}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-mapadevalores} -d ${POSTGRES_DB:-mapadevalores}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    environment:
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-mapadevalores}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-mapadevalores}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
   nginx:
     image: nginx:alpine
     ports:
@@ -12,13 +41,5 @@ services:
       - nextjs
     restart: unless-stopped
 
-  nextjs:
-    build:
-      context: .
-      dockerfile: Dockerfile.nextjs
-    expose:
-      - "3000"
-    environment:
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - DATABASE_URL=${DATABASE_URL}
-    restart: unless-stopped
+volumes:
+  postgres_data:

@@ -30,5 +30,5 @@ EXPOSE 80
 ENV PORT=80
 ENV HOSTNAME="0.0.0.0"
 
-# Crear directorio de BD, ejecutar migraciones, arrancar servidor
-CMD sh -c "mkdir -p /data && npx prisma migrate deploy --schema=prisma/schema.prisma && node server.js"
+# Ejecutar migraciones y arrancar servidor
+CMD sh -c "npx prisma migrate deploy --schema=prisma/schema.prisma && node server.js"
